@@ -21,8 +21,6 @@ fn setup_scene(
         material: materials.add(Color::srgb(0.2, 0.2, 0.3)),
         ..default()
     });
-
-    // Player
 }
 
 fn setup_instructions(mut commands: Commands) {

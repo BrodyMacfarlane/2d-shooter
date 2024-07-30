@@ -42,11 +42,6 @@ fn update_camera(
     let Vec3 { x, y, .. } = player.translation;
     let direction = Vec3::new(x, y, camera.translation.z);
 
-    // Applies a smooth effect to camera movement using interpolation between
-    // the camera position and the player position on the x and y axes.
-    // Here we use the in-game time, to get the elapsed time (in seconds)
-    // since the previous update. This avoids jittery movement when tracking
-    // the player.
     camera.translation = camera
         .translation
         .lerp(direction, time.delta_seconds() * CAM_LERP_FACTOR);
