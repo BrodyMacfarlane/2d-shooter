@@ -13,6 +13,9 @@ impl Plugin for CameraPlugin {
     }
 }
 
+#[derive(Component)]
+pub struct MainCamera;
+
 fn setup_camera(mut commands: Commands) {
     commands.spawn((
         Camera2dBundle {
@@ -23,6 +26,7 @@ fn setup_camera(mut commands: Commands) {
             ..default()
         },
         BloomSettings::NATURAL,
+        MainCamera
     ));
 }
 
