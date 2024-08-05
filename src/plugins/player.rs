@@ -87,6 +87,10 @@ fn player_weapon_controls(
         commands.spawn((
             ProjectileBundle {
                 velocity: Velocity::new(Vec3::new(BULLET_SPEED, BULLET_SPEED, ENTITIES_Z)),
+                distance: Distance {
+                   travelled: 0.,
+                   max: BULLET_MAX_DISTANCE
+                },
                 mesh: MaterialMesh2dBundle {
                     mesh: meshes.add(Circle::new(BULLET_RADIUS)).into(),
                     material: materials.add(Color::srgb(9., 0., 9.)),
