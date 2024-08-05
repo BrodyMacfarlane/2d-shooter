@@ -11,9 +11,11 @@ use super::scene::ENTITIES_Z;
 use super::weapon::Weapon;
 
 const PLAYER_Z_LAYER: f32 = ENTITIES_Z;
-const STARTING_TRANSLATION: Vec3 = Vec3::new(0.0, 0.0, PLAYER_Z_LAYER);
+const PLAYER_SPAWN_POSITION: Vec3 = Vec3::new(0.0, 0.0, PLAYER_Z_LAYER);
 const PLAYER_RADIUS: f32 = 10.;
 const PLAYER_SPEED: f32 = 250.;
+const PLAYER_DEFAULT_WEAPON: ProjectileType = ProjectileType::Bullet;
+const PLAYER_WEAPON_FIRE_RATE: f32 = 5.;
 
 #[derive(Component, Debug)]
 pub struct Player;
@@ -32,16 +34,15 @@ fn spawn_player(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ColorMaterial>>,
     ) {
-    
     commands.spawn((
         Player,
         MaterialMesh2dBundle {
             mesh: meshes.add(Circle::new(PLAYER_RADIUS)).into(),
             material: materials.add(Color::srgb(6.25, 9.4, 9.1)),
-            transform: Transform::from_translation(STARTING_TRANSLATION),
+            transform: Transform::from_translation(PLAYER_SPAWN_POSITION),
             ..default()
         },
-        Weapon::new(ProjectileType::Bullet, 5.)
+        Weapon::new(PLAYER_DEFAULT_WEAPON, PLAYER_WEAPON_FIRE_RATE)
     ));
 }
 
