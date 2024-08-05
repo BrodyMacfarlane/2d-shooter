@@ -2,6 +2,8 @@ use bevy::prelude::*;
 
 use bevy::sprite::{MaterialMesh2dBundle, Mesh2dHandle};
 
+pub const ENTITIES_Z: f32 = 2.;
+
 pub struct ScenePlugin;
 
 impl Plugin for ScenePlugin { 

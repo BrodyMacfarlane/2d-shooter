@@ -2,7 +2,11 @@ use bevy::prelude::*;
 
 use bevy::sprite::MaterialMesh2dBundle;
 
-const PLAYER_Z_LAYER: f32 = 2.;
+use crate::plugins::projectile::*;
+
+use super::scene::ENTITIES_Z;
+
+const PLAYER_Z_LAYER: f32 = ENTITIES_Z;
 const STARTING_TRANSLATION: Vec3 = Vec3::new(0.0, 0.0, PLAYER_Z_LAYER);
 const PLAYER_RADIUS: f32 = 5.0;
 const PLAYER_SPEED: f32 = 250.;
@@ -15,7 +19,7 @@ pub struct PlayerPlugin;
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(PostStartup, spawn_player)
-            .add_systems(Update, player_movement_controls);
+            .add_systems(Update, (player_movement_controls, player_weapon_controls));
     }
 }
 
@@ -71,28 +75,26 @@ fn player_movement_controls(
 }
 
 
-//fn player_weapon_controls(
-//    mut commands: Commands,
-//    query: Query<&Transform, With<Player>>,
-//    mouse_input: Res<ButtonInput<MouseButton>>,
-//    scene_assets: Res<SceneAssets>,
-//) {
-//    let transform = query.single();
-//    if mouse_input.pressed(MouseButton::Left) {
-//        commands.spawn((
-//            MovingObjectBundle {
-//                velocity: Velocity::new(-transform.forward() * BULLET_SPEED),
-//                acceleration: Acceleration::new(Vec2::ZERO),
-//                collider: Collider::new(BULLET_RADIUS),
-//                model: SceneBundle {
-//                    scene: scene_assets.bullets.clone(),
-//                    transform: Transform::from_translation(
-//                        transform.translation + -transform.forward() * BULLET_FORWARD_SPAWN_SCALAR,
-//                    ),
-//                    ..default()
-//                },
-//            },
-//            Bullet,
-//        ));
-//    }
-//}
+fn player_weapon_controls(
+    mut commands: Commands,
+    query: Query<&Transform, With<Player>>,
+    mouse_input: Res<ButtonInput<MouseButton>>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<ColorMaterial>>,
+) {
+    let transform = query.single();
+    if mouse_input.pressed(MouseButton::Left) {
+        commands.spawn((
+            ProjectileBundle {
+                velocity: Velocity::new(Vec3::new(BULLET_SPEED, BULLET_SPEED, ENTITIES_Z)),
+                mesh: MaterialMesh2dBundle {
+                    mesh: meshes.add(Circle::new(BULLET_RADIUS)).into(),
+                    material: materials.add(Color::srgb(9., 0., 9.)),
+                    transform: Transform::from_translation(transform.translation),
+                    ..default()
+                },
+            },
+            Bullet,
+        ));
+    }
+}

@@ -5,6 +5,7 @@ use bevy::prelude::*;
 use plugins::scene::ScenePlugin;
 use plugins::player::PlayerPlugin;
 use plugins::camera::CameraPlugin;
+use plugins::projectile::ProjectilePlugin;
 
 
 fn main() {
@@ -20,6 +21,7 @@ fn main() {
         .add_plugins(ScenePlugin)
         .add_plugins(PlayerPlugin)
         .add_plugins(CameraPlugin)
+        .add_plugins(ProjectilePlugin)
         // .add_plugins(DebugPlugin)
         .run();
 }
