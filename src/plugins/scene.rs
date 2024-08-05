@@ -26,16 +26,16 @@ fn setup_scene(
 }
 
 fn setup_instructions(mut commands: Commands) {
-    commands.spawn(
-        TextBundle::from_section(
-            "Move the light with ZQSD or WASD.\nThe camera will smoothly track the light.",
-            TextStyle::default(),
-        )
-        .with_style(Style {
-            position_type: PositionType::Absolute,
-            bottom: Val::Px(12.0),
-            left: Val::Px(12.0),
-            ..default()
-        }),
-    );
+    //commands.spawn(
+    //    TextBundle::from_section(
+    //        "Move the light with ZQSD or WASD.\nThe camera will smoothly track the light.",
+    //        TextStyle::default(),
+    //    )
+    //    .with_style(Style {
+    //        position_type: PositionType::Absolute,
+    //        bottom: Val::Px(12.0),
+    //        left: Val::Px(12.0),
+    //        ..default()
+    //    }),
+    //);
 }

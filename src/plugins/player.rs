@@ -12,7 +12,7 @@ use super::weapon::Weapon;
 
 const PLAYER_Z_LAYER: f32 = ENTITIES_Z;
 const STARTING_TRANSLATION: Vec3 = Vec3::new(0.0, 0.0, PLAYER_Z_LAYER);
-const PLAYER_RADIUS: f32 = 5.0;
+const PLAYER_RADIUS: f32 = 10.;
 const PLAYER_SPEED: f32 = 250.;
 
 #[derive(Component, Debug)]
@@ -41,7 +41,7 @@ fn spawn_player(
             transform: Transform::from_translation(STARTING_TRANSLATION),
             ..default()
         },
-        Weapon::new(ProjectileType::Bullet, 0.5)
+        Weapon::new(ProjectileType::Bullet, 5.)
     ));
 }
 

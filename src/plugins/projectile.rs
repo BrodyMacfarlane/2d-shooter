@@ -74,8 +74,8 @@ pub fn spawn_projectile(
     direction: Vec3,
 ) {
     let (speed, radius, max_distance, color) = match projectile_type {
-        ProjectileType::Bullet => (300.0, 1.0, 1000.0, Color::srgb(0.9, 0.0, 0.9)),
-        ProjectileType::Arrow => (150.0, 3.0, 800.0, Color::srgb(0.0, 0.9, 0.9)),
+        ProjectileType::Bullet => (1250.0, 2.0, 1000.0, Color::srgb(0.9, 0.0, 0.9)),
+        ProjectileType::Arrow => (350.0, 5.0, 200.0, Color::srgb(0.0, 0.9, 0.9)),
     };
 
     commands.spawn(ProjectileBundle {
