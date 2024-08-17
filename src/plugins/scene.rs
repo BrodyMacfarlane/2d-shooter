@@ -19,8 +19,8 @@ fn setup_scene(
 ) {
     // World where we move the player
     commands.spawn(MaterialMesh2dBundle {
-        mesh: Mesh2dHandle(meshes.add(Rectangle::new(1000., 700.))),
-        material: materials.add(Color::srgb(0.2, 0.2, 0.3)),
+        mesh: Mesh2dHandle(meshes.add(Rectangle::new(5000., 2500.))),
+        material: materials.add(Color::srgb(0.2, 0., 0.5)),
         ..default()
     });
 }

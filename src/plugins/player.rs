@@ -12,13 +12,20 @@ use super::weapon::Weapon;
 
 const PLAYER_Z_LAYER: f32 = ENTITIES_Z;
 const PLAYER_SPAWN_POSITION: Vec3 = Vec3::new(0.0, 0.0, PLAYER_Z_LAYER);
-const PLAYER_RADIUS: f32 = 10.;
+const PLAYER_WIDTH: f32 = 15.;
 const PLAYER_SPEED: f32 = 250.;
 const PLAYER_DEFAULT_WEAPON: ProjectileType = ProjectileType::Bullet;
 const PLAYER_WEAPON_FIRE_RATE: f32 = 5.;
 
 #[derive(Component, Debug)]
 pub struct Player;
+
+#[derive(Bundle)]
+pub struct PlayerBundle {
+    pub player: Player,
+    pub mesh: MaterialMesh2dBundle<ColorMaterial>,
+    pub weapon: Weapon
+}
 
 pub struct PlayerPlugin;
 
@@ -34,16 +41,18 @@ fn spawn_player(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ColorMaterial>>,
     ) {
-    commands.spawn((
-        Player,
-        MaterialMesh2dBundle {
-            mesh: meshes.add(Circle::new(PLAYER_RADIUS)).into(),
-            material: materials.add(Color::srgb(6.25, 9.4, 9.1)),
-            transform: Transform::from_translation(PLAYER_SPAWN_POSITION),
-            ..default()
-        },
-        Weapon::new(PLAYER_DEFAULT_WEAPON, PLAYER_WEAPON_FIRE_RATE)
-    ));
+    commands.spawn(
+        PlayerBundle {
+            player: Player,
+            mesh: MaterialMesh2dBundle {
+                mesh: meshes.add(Rectangle::new(PLAYER_WIDTH, PLAYER_WIDTH * 1.75)).into(),
+                material: materials.add(Color::srgba(0.1, 0.4, 0.5, 0.3)),
+                transform: Transform::from_translation(PLAYER_SPAWN_POSITION),
+                ..default()
+            },
+            weapon: Weapon::new(PLAYER_DEFAULT_WEAPON, PLAYER_WEAPON_FIRE_RATE)
+        }
+    );
 }
 
 fn player_movement_controls(

@@ -12,7 +12,7 @@ use plugins::cooldown::CooldownPlugin;
 fn main() {
     App::new()
         // Bevy built-ins.
-        .insert_resource(ClearColor(Color::srgb(0.4, 0.2, 0.15)))
+        .insert_resource(ClearColor(Color::srgb(0.12, 0., 0.25)))
         .insert_resource(AmbientLight {
             color: Color::default(),
             brightness: 0.75,
