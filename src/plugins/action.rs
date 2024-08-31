@@ -7,5 +7,6 @@ pub enum ActionName {
 
 pub struct Action {
     name: ActionName,
+    direction: Vec2,
     priority: u32
 }

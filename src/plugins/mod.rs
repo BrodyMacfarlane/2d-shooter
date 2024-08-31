@@ -4,4 +4,6 @@ pub mod scene;
 pub mod weapon;
 pub mod projectile;
 pub mod cooldown;
-pub mod animation;
+pub mod movement;
+pub mod input;
+// pub mod animation;

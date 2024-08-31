@@ -4,7 +4,7 @@ use bevy::prelude::*;
 
 use plugins::scene::ScenePlugin;
 use plugins::player::PlayerPlugin;
-use plugins::animation::AnimationPlugin;
+// use plugins::animation::AnimationPlugin;
 use plugins::camera::CameraPlugin;
 use plugins::projectile::ProjectilePlugin;
 use plugins::cooldown::CooldownPlugin;
@@ -22,7 +22,7 @@ fn main() {
         // User defined plugins.
         .add_plugins(ScenePlugin)
         .add_plugins(PlayerPlugin)
-        .add_plugins(AnimationPlugin)
+        // .add_plugins(AnimationPlugin)
         .add_plugins(CameraPlugin)
         .add_plugins(ProjectilePlugin)
         .add_plugins(CooldownPlugin)
